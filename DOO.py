@@ -45,7 +45,7 @@ class Node:
         value=[]
 
         for i in range(len(node)):
-            value.append(function(node[i].center)+14*2**(-node[i].depth))
+            value.append(function(node[i].center)+222*2**(-2*node[i].depth))
             #print value[i]
         #child1=function(node[0].center)+14*2**(-node[0].depth)
         #child2=function(node[1].center)+14*2**(-node[1].depth)
@@ -59,9 +59,6 @@ class Node:
         #if child1==child2:
             #s=random.choice(node[0],node[1])
         #print s.depth
-        hi=function(node[index].center)
-        print node[index].center
-        print hi
         function_evalution.append(node[index].center)
 
         return node[index],index
@@ -80,7 +77,7 @@ def DOO():
     final=[]
     function_evalution=[]
 
-    for i in range(500):
+    for i in range(150):
 
 
         if node.childNodes!=[]:
@@ -91,13 +88,13 @@ def DOO():
         #spliting search space into 2-ary
         #calculate the center of the search space
         mid=midpoint(node.leftmin, node.rightmax)
-        #print mid
+        print mid
         #calculate two child center
         left_center=midpoint(node.leftmin,mid)
         right_center=midpoint(mid,node.rightmax)
         #print left_child
         #print right_child
-        #print node.depth
+        print node.depth
 
         #expand two nodes at one time
         current_node.append(node.Addnode(left_center,node.depth+1,node.leftmin,mid))
@@ -105,15 +102,15 @@ def DOO():
 
         #print current_node[0]
     for i in range(len(current_node)):
-        final.append(function(current_node[i].center)+14*2**(-current_node[i].depth))
+        final.append(function(current_node[i].center)+222*2**(-2*current_node[i].depth))
     findex=np.argmax(final)
-    #print function_evalution
+    print function_evalution
     return current_node[findex].center
 
 
 
 d=DOO()
-#print d
+print d
 
 
 """plot the final result"""
@@ -125,7 +122,6 @@ for i in range(len(x)):
     f=(np.sin(13*x[i])*np.sin(27*x[i])+1)/2.0
     u.append(f)
 print len(u)
-#plt.hist(u, 50)
 plt.scatter(x,u)
 t=np.linspace(0,1,200)
 y=(np.sin(13*t)*np.sin(27*t)+1)/2.0
