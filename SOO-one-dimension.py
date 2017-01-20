@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 # function need to be optimized
 #x = np.linspace(0,1,100) # 100 linearly spaced numbers
 #y = (np.sin(13*x)*np.sin(27*x)+1)/2 # computing the values of sin(x)/x
+def gland_function(x):
+    y=x*(1-x)*(4-np.sqrt(abs(np.sin(60*x))))
+    return y
 def function(x):
     y = (np.sin(13*x)*np.sin(27*x)+1)/2.0
     return y
@@ -53,14 +56,14 @@ class Node:
                 index.append(i)
 
         for i in range(len(leaves_of_depth)):
-            value.append(function(leaves_of_depth[i].center))
+            value.append(gland_function(leaves_of_depth[i].center))
             #print value
         new_index=np.argmax(value)
         #print new_index
         hi=node[index[new_index]].center
         fh=function(hi)
-        print hi
-        print fh
+        #print hi
+        #print fh
 
         function_evalution.append(fh)
 
@@ -86,16 +89,18 @@ def SOO():
     f_eva=0
     while t<=200:
         v_max=float("-inf")
-        h_max=t
+        h_max=np.sqrt(t)
         h_tree=tree_depth(current_node)
         loop=mini(h_max,h_tree)
         h=0
-        while h<=loop:
+        for h in range(0,t):
+            #print h
             check_leaves=[]
             for i in range(len(current_node)):
                 check_leaves.append(current_node[i].depth)
             if h in check_leaves:
                 node,index,ini_f = node.Selectnode(current_node,function_evalution,h)
+                print ini_f
                 f_eva=f_eva+1
                 current_node.pop(index)
                 if ini_f>=v_max:
@@ -107,9 +112,9 @@ def SOO():
                     t=t+1
                     v_max=ini_f
             h=h+1
-            if f_eva>=1000:
+            if f_eva>=150:
                 break
-        if f_eva>=1000:
+        if f_eva>=150:
             break
 
 

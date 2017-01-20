@@ -66,8 +66,8 @@ class Node:
                 index.append(i)
 
         for i in range(len(leaves_of_depth)):
-            #value.append(Branin_function(leaves_of_depth[i].x1center, leaves_of_depth[i].x2center))
-            value.append(surface_function(leaves_of_depth[i].x1center, leaves_of_depth[i].x2center))
+            value.append(Branin_function(leaves_of_depth[i].x1center, leaves_of_depth[i].x2center))
+            #value.append(surface_function(leaves_of_depth[i].x1center, leaves_of_depth[i].x2center))
 
             #print value
         new_index=np.argmax(value)
@@ -135,9 +135,9 @@ def SOO():
                     t=t+1
                     v_max=ini_f
             h=h+1
-            if f_eva>=50:
+            if f_eva>=500:
                 break
-        if f_eva>=50:
+        if f_eva>=500:
             break
         #for i in range(len(function_evalution)):
 
